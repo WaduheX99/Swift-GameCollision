@@ -14,6 +14,8 @@ class GameOver: SKScene {
     
     override func didMove(to view: SKView) {
         
+        scaleMode = .aspectFit
+        
         // Get label node from scene and store it for use later
         let label = self.childNode(withName: "//label") as? SKLabelNode
         if win == false {

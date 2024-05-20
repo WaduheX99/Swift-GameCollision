@@ -20,6 +20,7 @@
 		67ACD53A2BF3A04100CDB1CD /* GameCollisionUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ACD5392BF3A04100CDB1CD /* GameCollisionUITestsLaunchTests.swift */; };
 		67ACD5472BFB3B8C00CDB1CD /* GameOver.sks in Resources */ = {isa = PBXBuildFile; fileRef = 67ACD5462BFB3B8C00CDB1CD /* GameOver.sks */; };
 		67ACD5492BFB3DA500CDB1CD /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67ACD5482BFB3DA500CDB1CD /* GameOver.swift */; };
+		67ACD54B2BFB9B6E00CDB1CD /* MatSaleh.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 67ACD54A2BFB9B6E00CDB1CD /* MatSaleh.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		67ACD5392BF3A04100CDB1CD /* GameCollisionUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCollisionUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		67ACD5462BFB3B8C00CDB1CD /* GameOver.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOver.sks; sourceTree = "<group>"; };
 		67ACD5482BFB3DA500CDB1CD /* GameOver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
+		67ACD54A2BFB9B6E00CDB1CD /* MatSaleh.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MatSaleh.ttf; path = Assets.xcassets/MatSaleh.dataset/MatSaleh.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 		67ACD5122BF3A04000CDB1CD /* GameCollision */ = {
 			isa = PBXGroup;
 			children = (
+				67ACD54A2BFB9B6E00CDB1CD /* MatSaleh.ttf */,
 				67ACD5132BF3A04000CDB1CD /* AppDelegate.swift */,
 				67ACD5152BF3A04000CDB1CD /* GameScene.sks */,
 				67ACD5172BF3A04000CDB1CD /* Actions.sks */,
@@ -242,6 +245,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67ACD51F2BF3A04000CDB1CD /* Main.storyboard in Resources */,
+				67ACD54B2BFB9B6E00CDB1CD /* MatSaleh.ttf in Resources */,
 				67ACD5472BFB3B8C00CDB1CD /* GameOver.sks in Resources */,
 				67ACD5162BF3A04000CDB1CD /* GameScene.sks in Resources */,
 				67ACD5212BF3A04100CDB1CD /* Assets.xcassets in Resources */,
@@ -456,6 +460,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AT785YHHX2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -483,6 +488,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = AT785YHHX2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
