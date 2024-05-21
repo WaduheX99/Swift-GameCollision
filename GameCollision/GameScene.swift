@@ -18,7 +18,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     var isTouching = false
     var touchDirection: CGFloat = 0.0
     
-    private var label : SKLabelNode?
+    private var label = SKLabelNode(fontNamed: "Mat Saleh Regular")
     private var spinnyNode : SKShapeNode?
     private var character : SKSpriteNode!
     private var idleTextures :[SKTexture] = []
@@ -36,7 +36,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         self.physicsWorld.contactDelegate = self
         
         // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//label") as? SKLabelNode
+        self.label = (self.childNode(withName: "//label") as? SKLabelNode)!
         self.character = (self.childNode(withName: "//character") as? SKSpriteNode)!
         
         
@@ -68,7 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             SKTexture(imageNamed: "moveRight6"),
             SKTexture(imageNamed: "moveRight7"),
         ]
-        moveRightTextures = SKAction.animate(with: moveRightFrames, timePerFrame: 0.2)
+        moveRightTextures = SKAction.animate(with: moveRightFrames, timePerFrame: 0.07)
         
         // move Left animation
         let moveLeftFrames = [
@@ -80,7 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
             SKTexture(imageNamed: "moveLeft6"),
             SKTexture(imageNamed: "moveLeft7")
         ]
-        moveLeftTextures = SKAction.animate(with: moveLeftFrames, timePerFrame: 0.2)
+        moveLeftTextures = SKAction.animate(with: moveLeftFrames, timePerFrame: 0.07)
         
         // Memastikan scene update secara berkala
         let actionWait = SKAction.wait(forDuration: 0.01)
@@ -107,8 +107,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     func dropObj() {
         // randomly select what to drop and where to position it
         let random = Int.random(in: 1...2) // 1 = rock  2 = fish
-        let randomX = Int.random(in: -560...560)
-        let randomY = Int.random(in: 1200...1280)
+//        let randomX = Int.random(in: -560...560)
+//        let randomY = Int.random(in: 1200...1280)
+        
+//        // Batas area spawn terbatas
+//        let restrictedMinX = Int(margin)
+//        let restrictedMaxX = Int(size.width - margin)
+//        let restrictedMinY = Int(margin)
+//        let restrictedMaxY = Int(size.height - margin)
+        
+        // Membuat generator angka acak dan distribusi dalam area terbatas
+        let randomSource = GKRandomSource.sharedRandom()
+        let randomDistributionX = GKRandomDistribution(randomSource: randomSource, lowestValue: -560, highestValue: 560)
+        let randomDistributionY = GKRandomDistribution(randomSource: randomSource, lowestValue: 1500, highestValue: 1600)
+        
+        // Mendapatkan koordinat acak dalam area terbatas
+        let randomX = randomDistributionX.nextInt()
+        let randomY = randomDistributionY.nextInt()
         
         var obj = SKSpriteNode(imageNamed: "fish")
         obj.position = CGPoint(x: randomX, y: randomY)
@@ -196,7 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
     
     func updateCharacterPosition() {
         if isTouching {
-            let moveSpeed: CGFloat = 3.5
+            let moveSpeed: CGFloat = 6.0
             character.position.x += touchDirection * moveSpeed
             
             // Menentukan batas frame
@@ -235,7 +250,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         if collision == characterCategory | fishCategory {
             collectedFish += 1
-            label?.text = "\(collectedFish)"
+            label.text = "\(collectedFish)"
             if (bodyA == "fish"){
                 contact.bodyA.node?.removeFromParent()
                 numObjs -= 1
@@ -266,9 +281,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate{
         }
     }
     
+    func startSpawning() {
+        let wait = SKAction.wait(forDuration: 1.5)
+        let spawn = SKAction.run { [weak self] in
+            self?.dropObj()
+        }
+        let spawnSequence = SKAction.sequence([spawn, wait])
+        let repeatSpawn = SKAction.repeat(spawnSequence, count: numObjs)
+        
+        self.run(repeatSpawn)
+    }
+    
     override func update(_ currentTime: TimeInterval) {
         if (numObjs < 7) {
-            dropObj()
+            startSpawning()
         }
         
         // Called before each frame is rendered

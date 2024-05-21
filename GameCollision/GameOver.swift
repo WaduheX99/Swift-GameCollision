@@ -11,6 +11,7 @@ import GameplayKit
 class GameOver: SKScene {
     
     public var win = true
+//    private var label = SKLabelNode(fontNamed: "Athens Classic Medium")
     
     override func didMove(to view: SKView) {
         
